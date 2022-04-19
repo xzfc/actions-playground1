@@ -11,13 +11,13 @@ jobs:
     uses: ./.github/workflows/release-template.yaml
     with:
       param: ppp
-      repositories: >-
-        [
-          "cmd-forwarder-sriov",
-          "cmd-nsc",
-          "cmd-nsc-init",
-          "cmd-nse-icmp-responder",
-          "cmd-forwarder-vpp",
-          "cmd-nse-vlan-vpp",
-          "sdk-ovs",
-        ]
+      #repositories: >-
+      #  [
+      #    "cmd-forwarder-sriov",
+      #    "cmd-nsc",
+      #    "cmd-nsc-init",
+      #    "cmd-nse-icmp-responder",
+      #    "cmd-forwarder-vpp",
+      #    "cmd-nse-vlan-vpp",
+      #    "sdk-ovs",
+      #  ]
