@@ -1,0 +1,12 @@
+---
+name: ci
+on:
+  push:
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: step 1
+        run:
+          echo ok

@@ -1,0 +1,27 @@
+---
+name: Release
+on:
+  workflow_run:
+    types:
+      - completed
+    workflows:
+      - "ci"
+jobs:
+  print-debug-info:
+    name: Print debug info for Release workflow
+    runs-on: ubuntu-latest
+    steps:
+      - uses: hmarr/debug-action@v2
+  create-release:
+    name: Create release
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: step 2
+        id: get-tag-step
+        run: |
+          echo head_branch=${{github.event.workflow_run.head_branch}}
+          echo '::set-output name=tag::something'
+      - name: step 3
+        run: |
+          echo tag=${{ steps.get-tag-step.outputs.tag }}
