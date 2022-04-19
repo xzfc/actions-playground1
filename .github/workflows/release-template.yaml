@@ -7,7 +7,6 @@ on:
         type: string
       repositories:
         type: string
-        default: ""
 jobs:
   print-debug-info:
     name: Print debug info for Release workflow
@@ -15,20 +14,28 @@ jobs:
     steps:
       - uses: hmarr/debug-action@v2
   create-release:
+    name: Create release
+    steps:
+      - name: step 1
+        run: |
+          false
+
+  update-dependent-repositories:
+    name: Update ${{ matrix.repository }}
     strategy:
       matrix:
         matrixval: ${{fromJson(inputs.repositories)}}
-    name: Create release
+    needs: create-release
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' && inputs.repositories }}
     steps:
-      - name: step 2
+      - name: step 3
         id: get-tag-step
         run: |
           echo head_branch=${{github.event.workflow_run.head_branch}}
           echo '::set-output name=tag::something'
           echo 'matrixval=1'
-      - name: step 3
+      - name: step 4
         run: |
           echo tag=${{ steps.get-tag-step.outputs.tag }}
           echo param=${{ inputs.param }}
